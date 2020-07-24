@@ -5,7 +5,7 @@ const Users = require('./models/Users')
 const client = new Discord.Client();
 const commands  = require('./commands')
 
-mongoose.connect('mongodb://baaswietse:W942018d@ds127604.mlab.com:27604/triggerbot', {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once("open", function() {
   console.log("MongoDB database connection established successfully");

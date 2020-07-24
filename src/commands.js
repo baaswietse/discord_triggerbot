@@ -1,8 +1,8 @@
 const Users = require('./models/Users')
 const asyncForEach = require('async-await-foreach') 
 
-const addTriggerCommand = '#trigger'
-const returnTriggersCommand = '#triggerstats'
+const addTriggerCommand = 'trigger'
+const returnTriggersCommand = 'triggerstats'
 
 const commands = {}
 
@@ -64,10 +64,10 @@ commands.returnTriggers = async function(message){
 }
   
 commands.listAllCommands = async function(message){
-    if(message.content == '#triggercommands'){
+    if(message.content == 'triggercommands' || message.content == 'triggerhelp'){
         const commands = `A list of all supported commands:
-        > **#trigger** *@user: triggers a user*
-        > **#triggerstats** *@user: gets the triggered stats of a user*
+        > **trigger** *@user: triggers a user*
+        > **triggerstats** *@user: gets the triggered stats of a user*
         `
         await message.channel.send(commands)
     }

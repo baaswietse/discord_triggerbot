@@ -23,7 +23,6 @@ client.on('message', async (message) => {
   //loop over alle commands en invoke elke functies met de message
   for (var key in commands) {
       if (commands.hasOwnProperty(key)) {
-          console.log(key + " -> " + commands[key]);
           commands[key](message)
       }
   }

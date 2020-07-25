@@ -15,13 +15,13 @@ commands.yikes = async function (message) {
 }
 
 commands.ohn = async function (message) {
-    if (message.content.toLowerCase().includes('ohn')) {
+    if (/o+hn/i.exec(message.content)) {
         message.reply('ooooohn')
     }
 }
 
 commands.neig = async function (message) {
-    if (message.content.toLowerCase().includes('neig')) {
+    if (/ne+ig/i.exec(message.content)) {
         message.reply('neeeeeig')
     }
 }
@@ -209,7 +209,7 @@ commands.returnAllTriggers = async function (message) {
 }
 
 commands.listAllCommands = async function (message) {
-    if (message.content.toLowerCase() == 'triggercommands' || message.content == 'triggerhelp') {
+    if (message.content.toLowerCase() == 'triggercommands' || message.content.toLowerCase() == 'triggerhelp') {
         const commands = `A list of all supported commands:
         > **trigger** *@user: triggers a user*
         > **triggerstats** *@user: gets the triggered stats of a user*

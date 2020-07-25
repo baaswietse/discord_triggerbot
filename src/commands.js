@@ -1,14 +1,15 @@
 const Users = require('./models/Users')
 const asyncForEach = require('async-await-foreach') 
-const redditFetch = require('reddit-fetch')
+const redditFetch = require('./modules/reddit-fetch')
 
-const prefix = ''
+const prefix = process.env.PREFIX || ''
 const addTriggerCommand = `${prefix}trigger`
 const returnTriggersCommand = `${prefix}triggerstats`
 
 const commands = {}
 
 commands.animeTiddies = async function(message){
+    // https://www.reddit.com/r/animetitties.json?sort=best&t=year&limit=100
     if(message.content.toLowerCase().includes('anime tidies')){
         let post = {}
         while(!('url_overridden_by_dest' in post)){
@@ -21,7 +22,7 @@ commands.animeTiddies = async function(message){
             
             })
         }
-        message.channel.send('Oooohn', {files: [post.url_overridden_by_dest]})
+        message.channel.send('Oooohn neig', {files: [post.url_overridden_by_dest]})
         console.log(post)
     }
 
@@ -90,7 +91,7 @@ commands.addTrigger = async function (message){
                     message.channel.send(`<@${mention.user_id}> has been triggered ${userTriggers} times`)
                 })
                 
-                // No @ mentions
+            // No @ mentions
             }else{
                 await message.channel.send('no "@" mention')
             }

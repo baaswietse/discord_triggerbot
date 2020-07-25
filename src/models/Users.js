@@ -1,18 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 let user = new Schema(
-  {
-    user_id: {
-      type: String
+    {
+        user_id: {
+            type: String
+        },
+        username: {
+            type: String
+        },
+        triggers: [{date: Date, mentionedBy: String}]
     },
-    username: {
-      type: String
-    },
-    triggers: [{date: Date, mentionedBy: String}]
-  },
-  { collection: "users" }
-);
+    { collection: 'users' }
+)
 
-module.exports = mongoose.model("users", user);
+module.exports = mongoose.model('users', user)

@@ -93,7 +93,7 @@ commands.addTrigger = async function (message){
                 
             // No @ mentions
             }else{
-                await message.channel.send('no "@" mention')
+                await message.channel.send('no "@" mention\nFor a list of all supported commands type: "triggerhelp"')
             }
         }   
     }catch(err){

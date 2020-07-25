@@ -1,11 +1,55 @@
 const Users = require('./models/Users')
 const asyncForEach = require('async-await-foreach') 
+const redditFetch = require('reddit-fetch')
 
 const prefix = ''
 const addTriggerCommand = `${prefix}trigger`
 const returnTriggersCommand = `${prefix}triggerstats`
 
 const commands = {}
+
+commands.animeTiddies = async function(message){
+    if(message.content.toLowerCase().includes('anime tidies')){
+        let post = {}
+        while(!('url_overridden_by_dest' in post)){
+            post = await redditFetch({
+                subreddit: 'animetitties',
+                sort: 'new',
+                allowNSFW: true,
+                allowModPost: true,
+                allowCrossPost: true,
+            
+            })
+        }
+        message.channel.send('Oooohn', {files: [post.url_overridden_by_dest]})
+        console.log(post)
+    }
+
+}
+
+commands.whamen = async function(message){
+    const whamen = ['whamen', 'vrouwen', 'meisjes', 'bitches', 'teven', 'teef', 'woman', 'cumbucket', '<@!247106993335042048>', 'cumcontainer', 'women', 'hoeren', 'objecten', 'oenjers','slettenbakken', 'sleddes','wasmachines', 'gianni']
+    console.log(message.content)
+    whamen.forEach((queen) =>{
+        if(message.content.toLowerCase().includes(queen)){
+            if(message.content.toLowerCase() === 'gianni' || message.content.toLowerCase().includes('<@!247106993335042048>')){
+                message.channel.send('<@247106993335042048> tzijn aal teven of coifeusen')  //@ Gianni
+            }else{
+                message.reply('tzijn aal teven of coifeusen')
+            }
+        }
+    })
+    
+}
+
+commands.nigger = async function(message){
+    const niggers = ['nigger', 'negro', 'nignog', 'neegro', 'kneegrow', 'neger']
+    niggers.forEach((nigger) =>{
+        if(message.content.toLowerCase().includes(nigger)){
+            message.reply('we are a Christian server!')
+        }
+    })
+}
 
 commands.urMomGay = async function(message){
     if(message.content.includes('gay'.toLowerCase())){
@@ -101,7 +145,10 @@ commands.listAllCommands = async function(message){
         > **trigger** *@user: triggers a user*
         > **triggerstats**: gets the triggered stats of all user*
         > **triggerstats** *@user: gets the triggered stats of a user*
+        > **anime tidies**: oooohn
         > **gay**: No u!
+        > **nigger synonyms**
+        > **whamen synonyms**
         `
         await message.channel.send(commands)
     }

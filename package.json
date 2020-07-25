@@ -14,7 +14,8 @@
     "async-await-foreach": "^1.0.4",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "mongoose": "^5.9.25"
+    "mongoose": "^5.9.25",
+    "reddit-fetch": "^1.4.0"
   },
   "devDependencies": {
     "eslint": "^7.5.0",

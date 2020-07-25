@@ -144,10 +144,10 @@ commands.listAllCommands = async function(message){
     if(message.content.toLowerCase() == 'triggercommands' || message.content == 'triggerhelp'){
         const commands = `A list of all supported commands:
         > **trigger** *@user: triggers a user*
-        > **triggerstats**: gets the triggered stats of all user*
         > **triggerstats** *@user: gets the triggered stats of a user*
-        > **anime tidies**: oooohn
-        > **gay**: No u!
+        > **triggerstats**: *gets the triggered stats of all users*
+        > **anime tidies**: *oooohn*
+        > **gay**: *No u!*
         > **nigger synonyms**
         > **whamen synonyms**
         `

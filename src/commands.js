@@ -8,6 +8,53 @@ const returnTriggersCommand = `${prefix}triggerstats`
 
 const commands = {}
 
+commands.neig = async function (message) {
+    if (message.content.toLowerCase().includes('neig')) {
+        message.reply('neeeeeig')
+    }
+}
+
+
+commands.sletje = async function (message) {
+    if (message.content.toLowerCase().includes('sletje')) {
+        message.reply('ooohn neig')
+    }
+}
+
+commands.reddit = async function (message) {
+    try {
+        if (message.content.replace(/[ ].*$/, '').toLowerCase() == 'reddit') {
+            let post = {}
+            while (!('url_overridden_by_dest' in post)) {
+                let resp = await redditFetch({
+                    subreddit: /[ ].*$/.exec(message.content)[0].trim(),
+                    sort: 'best',
+                    allowNSFW: true,
+                    allowModPost: true,
+                    allowCrossPost: true,
+                })
+                if ('url_overridden_by_dest' in resp) {
+                    if (
+                        (
+                            resp.url_overridden_by_dest.includes('.jpg') ||
+                            resp.url_overridden_by_dest.includes('.gif') ||
+                            resp.url_overridden_by_dest.includes('.png')
+                        ) && !resp.url_overridden_by_dest.includes('.gifv')) {
+                        post = resp
+                    }
+
+                }
+            }
+            console.log(post)
+            message.channel.send({
+                files: [post.url_overridden_by_dest]
+            })
+        }
+    } catch (err) {
+        message.channel.send(err.message)
+    }
+}
+
 commands.animeTiddies = async function (message) {
     // https://www.reddit.com/r/animetitties.json?sort=best&t=year&limit=100
     if (message.content.toLowerCase().includes('anime tidies')) {
@@ -15,7 +62,7 @@ commands.animeTiddies = async function (message) {
         while (!('url_overridden_by_dest' in post)) {
             post = await redditFetch({
                 subreddit: 'animetitties',
-                sort: 'new',
+                sort: 'best',
                 allowNSFW: true,
                 allowModPost: true,
                 allowCrossPost: true,
@@ -155,8 +202,10 @@ commands.listAllCommands = async function (message) {
         > **trigger** *@user: triggers a user*
         > **triggerstats** *@user: gets the triggered stats of a user*
         > **triggerstats**: *gets the triggered stats of all users*
+        > **reddit** *subreddit: returns a random image or gif for given subreddit*
         > **anime tidies**: *oooohn*
         > **gay**: *No u!*
+        > **sletje**: *ooohn neig*
         > **nigger synonyms**
         > **whamen synonyms**
         `

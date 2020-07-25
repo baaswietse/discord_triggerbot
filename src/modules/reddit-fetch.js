@@ -51,6 +51,8 @@ async function redditFetch({
         // @ts-ignore
         nfetch(targetURL).then(res => res.json())
             .then(body => {
+                if(!body.data)return reject(new Error('subreddit not found'))
+                if(body.data.children.length === 0) return reject(new Error('subreddit not found'))
                 /* Array of found submissions */
                 let found = body.data.children
 
@@ -69,6 +71,7 @@ async function redditFetch({
 
                 /* Pick random post from array of found data */
                 let randInt = Math.floor(Math.random() * found.length)
+                console.log(found.length)
                 let post = found[randInt].data
                 resolve(post)
             })

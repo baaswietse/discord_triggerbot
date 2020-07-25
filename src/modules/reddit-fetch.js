@@ -14,7 +14,13 @@ const nfetch = require('node-fetch')
  * @returns {Promise<object>} Promise that resolves to a JSON object value.
  */
 
-async function redditFetch({ subreddit, sort = 'top', allowNSFW, allowModPost, allowCrossPost }) {
+async function redditFetch({
+    subreddit,
+    sort = 'top',
+    allowNSFW,
+    allowModPost,
+    allowCrossPost
+}) {
     return new Promise((resolve, reject) => {
 
         /* Check required argument */
@@ -22,19 +28,19 @@ async function redditFetch({ subreddit, sort = 'top', allowNSFW, allowModPost, a
             return reject(new Error('Missing required argument "subreddit"'))
 
         /* Validate options */
-        if (typeof(subreddit) !== 'string')
+        if (typeof (subreddit) !== 'string')
             return reject(new TypeError(`Expected type "string" but got "${typeof(subreddit)}"`))
 
-        if (sort && typeof(sort) !== 'string')
+        if (sort && typeof (sort) !== 'string')
             return reject(new TypeError(`Expected type "string" but got "${typeof(sort)}"`))
 
-        if (allowNSFW && typeof(allowNSFW) !== 'boolean')
+        if (allowNSFW && typeof (allowNSFW) !== 'boolean')
             return reject(new TypeError(`Expected type "boolean" but got "${typeof(allowNSFW)}"`))
 
-        if (allowModPost && typeof(allowModPost) !== 'boolean')
+        if (allowModPost && typeof (allowModPost) !== 'boolean')
             return reject(new TypeError(`Expected type "boolean" but got "${typeof(allowModPost)}"`))
 
-        if (allowCrossPost && typeof(allowCrossPost) !== 'boolean')
+        if (allowCrossPost && typeof (allowCrossPost) !== 'boolean')
             return reject(new TypeError(`Expected type "boolean" but got "${typeof(allowCrossPost)}"`))
 
         /* Configuration & target URL */

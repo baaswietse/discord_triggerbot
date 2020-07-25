@@ -130,18 +130,18 @@ commands.returnAllTriggers = async function (message) {
     try {
         if (message.content.replace(/[ ].*$/, '').toLowerCase() == returnTriggersCommand) {
             const mentionsData = message.mentions.users.array()
-            console.log(mentionsData.length)
             if (mentionsData.length == 0) {
-
                 const users = await Users.find({})
-                console.log(users)
-
-                let response = 'All triggered bots: \n'
-                await asyncForEach(users, async user => {
-                    const userTriggers = await getNumberOfTriggers(user.user_id)
-                    response = response + `> <@${user.user_id}> has been triggered ${userTriggers} \n`
-                })
-                await message.channel.send(response)
+                if (users.length > 0) {
+                    let response = 'All triggered bots: \n'
+                    await asyncForEach(users, async user => {
+                        const userTriggers = await getNumberOfTriggers(user.user_id)
+                        response = response + `> <@${user.user_id}> has been triggered ${userTriggers} times\n`
+                    })
+                    await message.channel.send(response)
+                } else {
+                    await message.channel.send('No triggered bots')
+                }
             }
         }
     } catch (err) {

@@ -1,6 +1,51 @@
 {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "editor.fontFamily": "Anonymous Pro",
+  "editor.fontLigatures": true,
+  "beautify.language": {
+    "js": {
+      "type": [
+        "javascript",
+        "json",
+        "jsonc"
+      ],
+      "filename": [
+        ".jshintrc",
+        ".jsbeautifyrc"
+      ]
     },
-    "eslint.validate": ["javascript"]
-   }
+    "css": [
+      "css",
+      "less",
+      "scss"
+    ],
+    "html": [
+      "htm",
+      "html"
+    ]
+  },
+  "eslint.options": {
+    "env": {
+      "commonjs": true,
+      "es2020": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 11
+    },
+    "rules": {
+      "indent": ["error", 4],
+      "linebreak-style": ["error", "windows"],
+      "quotes": ["error", "single"],
+      "semi": ["error", "never"]
+    }
+  }
+}

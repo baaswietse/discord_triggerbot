@@ -9,5 +9,7 @@ This bot takes track of how much people get triggered
 > **anime tidies**: *oooohn*
 > **gay**: *No u!*
 > **sletje**: *ooohn neig*
+> **ohn**: *ooohn*
+> **neig**: *neeeeig*
 > **nigger synonyms**
 > **whamen synonyms**

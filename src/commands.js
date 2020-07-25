@@ -8,6 +8,12 @@ const returnTriggersCommand = `${prefix}triggerstats`
 
 const commands = {}
 
+commands.ohn = async function (message) {
+    if (message.content.toLowerCase().includes('ohn')) {
+        message.reply('ooooohn')
+    }
+}
+
 commands.neig = async function (message) {
     if (message.content.toLowerCase().includes('neig')) {
         message.reply('neeeeeig')
@@ -206,6 +212,8 @@ commands.listAllCommands = async function (message) {
         > **anime tidies**: *oooohn*
         > **gay**: *No u!*
         > **sletje**: *ooohn neig*
+        > **ohn**: *ooohn*
+        > **neig**: *neeeeig*
         > **nigger synonyms**
         > **whamen synonyms**
         `

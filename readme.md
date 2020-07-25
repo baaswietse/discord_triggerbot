@@ -11,5 +11,6 @@ This bot takes track of how much people get triggered
 > **sletje**: *ooohn neig*
 > **ohn**: *ooohn*
 > **neig**: *neeeeig*
+> **yikes**: *that's a yikes for me dawg*
 > **nigger synonyms**
 > **whamen synonyms**

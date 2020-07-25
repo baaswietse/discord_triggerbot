@@ -8,6 +8,12 @@ const returnTriggersCommand = `${prefix}triggerstats`
 
 const commands = {}
 
+commands.yikes = async function (message) {
+    if (message.content.toLowerCase().includes('yikes')) {
+        message.reply('that\'s a yikes for me dawg')
+    }
+}
+
 commands.ohn = async function (message) {
     if (message.content.toLowerCase().includes('ohn')) {
         message.reply('ooooohn')
@@ -214,6 +220,7 @@ commands.listAllCommands = async function (message) {
         > **sletje**: *ooohn neig*
         > **ohn**: *ooohn*
         > **neig**: *neeeeig*
+        > **yikes**: *that's a yikes for me dawg*
         > **nigger synonyms**
         > **whamen synonyms**
         `

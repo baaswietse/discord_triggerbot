@@ -42,8 +42,8 @@
       "ecmaVersion": 11
     },
     "rules": {
-      "indent": ["error", 4],
-      "linebreak-style": ["error", "windows"],
+      "indent": ["off", 4],
+      "linebreak-style": ["off", "windows"],
       "quotes": ["error", "single"],
       "semi": ["error", "never"]
     }

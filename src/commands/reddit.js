@@ -7,6 +7,7 @@ module.exports = {
     description: 'Get a random image or gif from the specified subreddit, __reddit surprise__ for a random NSFW post',
     args: true,
     usage: '[subreddit name]',
+    cooldown: 0,
     async execute(message, args) {
         if (args.length) {
             if (args[0] == 'surprise') {

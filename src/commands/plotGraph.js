@@ -6,7 +6,7 @@ const Discord = require('discord.js')
 module.exports = {
     name: 'triggergraph',
     aliases: ['triggerplot', 'triggerplotter'],
-    description: 'Visual representation of all triggers',
+    description: 'Graphical representation of all triggers',
     async execute(message, args) {
         let users = await Users.find({})
         let data = users.map((user) => {

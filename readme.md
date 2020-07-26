@@ -6,6 +6,7 @@ This bot takes track of how much people get triggered
 - **triggerstats @user**: *gets the triggered stats of a user*
 - **triggerstats**: *gets the triggered stats of all users*
 - **reddit 'subreddit'**: *returns a random image or gif for given subreddit*
+- **reddit surprise**: *returns an image or gif from a random NSFW subreddit*
 - **anime tidies**: *oooohn*
 - **gay**: *No u!*
 - **sletje**: *ooohn neig*

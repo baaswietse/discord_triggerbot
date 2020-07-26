@@ -14,11 +14,11 @@ commands.yikes = async function (message) {
     if (message.content.toLowerCase().includes('yikes')) {
         const probabilities = [{
                 value: true,
-                prob: .2
+                prob: .4
             },
             {
                 value: false,
-                prob: .8
+                prob: .6
             }
         ]
         const probability = defineProbability(probabilities)
@@ -32,11 +32,11 @@ commands.ohn = async function (message) {
     if (/o+hn/i.exec(message.content)) {
         const probabilities = [{
                 value: true,
-                prob: .2
+                prob: .4
             },
             {
                 value: false,
-                prob: .8
+                prob: .6
             }
         ]
         const probability = defineProbability(probabilities)
@@ -50,16 +50,16 @@ commands.neig = async function (message) {
     if (/ne+ig/i.exec(message.content)) {
         const probabilities = [{
                 value: true,
-                prob: .2
+                prob: .4
             },
             {
                 value: false,
-                prob: .8
+                prob: .6
             }
         ]
         const probability = defineProbability(probabilities)
         if (probability) {
-            message.reply('neeeeeig')
+            message.reply('ohn neeeeeig')
         }
     }
 }
@@ -283,6 +283,7 @@ commands.listAllCommands = async function (message) {
         > **triggerstats** *@user: gets the triggered stats of a user*
         > **triggerstats**: *gets the triggered stats of all users*
         > **reddit** *subreddit: returns a random image or gif for given subreddit*
+        > **reddit surprise**: *returns an image or gif from a random NSFW subreddit*
         > **anime tidies**: *oooohn*
         > **gay**: *No u!*
         > **sletje**: *ooohn neig*

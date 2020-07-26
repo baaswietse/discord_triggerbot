@@ -1,6 +1,8 @@
+/* eslint-disable indent */
 const Users = require('./models/Users')
 const asyncForEach = require('async-await-foreach')
 const redditFetch = require('./modules/reddit-fetch')
+const defineProbability = require('define-probability')
 
 const prefix = process.env.PREFIX || ''
 const addTriggerCommand = `${prefix}trigger`
@@ -10,19 +12,55 @@ const commands = {}
 
 commands.yikes = async function (message) {
     if (message.content.toLowerCase().includes('yikes')) {
-        message.reply('that\'s a yikes for me dawg')
+        const probabilities = [{
+                value: true,
+                prob: .2
+            },
+            {
+                value: false,
+                prob: .8
+            }
+        ]
+        const probability = defineProbability(probabilities)
+        if (probability) {
+            message.reply('that\'s a yikes for me dawg')
+        }
     }
 }
 
 commands.ohn = async function (message) {
     if (/o+hn/i.exec(message.content)) {
-        message.reply('ooooohn')
+        const probabilities = [{
+                value: true,
+                prob: .2
+            },
+            {
+                value: false,
+                prob: .8
+            }
+        ]
+        const probability = defineProbability(probabilities)
+        if (probability) {
+            message.reply('ooooohn')
+        }
     }
 }
 
 commands.neig = async function (message) {
     if (/ne+ig/i.exec(message.content)) {
-        message.reply('neeeeeig')
+        const probabilities = [{
+                value: true,
+                prob: .2
+            },
+            {
+                value: false,
+                prob: .8
+            }
+        ]
+        const probability = defineProbability(probabilities)
+        if (probability) {
+            message.reply('neeeeeig')
+        }
     }
 }
 
@@ -35,7 +73,37 @@ commands.sletje = async function (message) {
 
 commands.reddit = async function (message) {
     try {
-        if (message.content.replace(/[ ].*$/, '').toLowerCase() == 'reddit') {
+        console.log(message.content.toLowerCase())
+        if (message.content.toLowerCase() == `${prefix}reddit surprise`) {
+            const subreddits = ['nsfw', 'amateur', 'amateurcumsluts', 'amateurporn', 'anal', 'besthqporngifs', 'boobbounce', 'collegesluts', 'drunkgirls', 'girlsdoingstuffnaked', 'gonewild', 'godpussy', 'homemadensfw', 'hotfallingdevilz', 'lanarhoades', 'lipsthatgrip', 'nsfw_gifs', 'pussy', 'unexpectedtitty', 'whooties', 'womenbendingover']
+            let post = {}
+            let sub = ''
+            while (!('url_overridden_by_dest' in post)) {
+                sub = subreddits[Math.floor(Math.random() * subreddits.length)]
+                let resp = await redditFetch({
+                    subreddit: sub,
+                    sort: 'best',
+                    allowNSFW: true,
+                    allowModPost: true,
+                    allowCrossPost: true,
+                })
+                if ('url_overridden_by_dest' in resp) {
+                    if (
+                        (
+                            resp.url_overridden_by_dest.includes('.jpg') ||
+                            resp.url_overridden_by_dest.includes('.gif') ||
+                            resp.url_overridden_by_dest.includes('.png')
+                        ) && !resp.url_overridden_by_dest.includes('.gifv')) {
+                        post = resp
+                    }
+
+                }
+            }
+            message.channel.send(`r/${sub}`, {
+                files: [post.url_overridden_by_dest]
+            })
+        }
+        if (message.content.replace(/[ ].*$/, '').toLowerCase() == `${prefix}reddit` && message.content.toLowerCase() != `${prefix}reddit surprise`) {
             let post = {}
             while (!('url_overridden_by_dest' in post)) {
                 let resp = await redditFetch({

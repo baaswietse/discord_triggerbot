@@ -33,13 +33,14 @@ module.exports = {
             if (error) return console.log(error)
 
             var fileStream = fs.createWriteStream('triggerpie.png')
-            imageStream.pipe(fileStream).on('close', () => {
+            imageStream.pipe(fileStream).on('close', async () => {
                 const embed = new Discord.MessageEmbed()
                     .attachFiles(['triggerpie.png'])
                     .setImage('attachment://triggerpie.png')
                     .setTitle('')
 
-                message.channel.send(embed)
+                await message.channel.send(embed)
+                fs.unlinkSync('triggerpie.png')
             })
 
         })

@@ -7,7 +7,8 @@
   "eslint.validate": [
     "javascript"
   ],
-  "editor.fontFamily": "Anonymous Pro",
+  "editor.fontFamily": "Anonymous Pro"
+  "editor.fontSize": 16,
   "editor.fontLigatures": true,
   "beautify.language": {
     "js": {

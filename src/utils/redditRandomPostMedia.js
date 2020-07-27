@@ -1,16 +1,6 @@
 const nfetch = require('node-fetch')
 const fs = require('fs')
-let logger = require('ololog')
-logger = logger.configure({
-	time: {
-		yes: true,
-		format: 'iso'
-	},
-	tag: true,
-	stringify: {
-		rightAlignKeys: false,
-	}
-})
+let logger = require('./logger')
 
 async function redditPostToEmbed(args) {
     return new Promise(async (resolve, reject) => {

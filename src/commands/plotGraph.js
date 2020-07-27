@@ -14,7 +14,7 @@ module.exports = {
                 x: [],
                 y: [],
                 type: 'scatter',
-                name: user.username,
+                name: user.triggers.length + ': ' + user.username,
                 // mode: 'lines',
                 line: {
                     width: 2
@@ -24,8 +24,11 @@ module.exports = {
                 plot.x.push(element.date)
                 plot.y.push(i + 1)
             })
+            plot.x.push(new Date())
+            plot.y.push(user.triggers.length)
             return plot
         })
+        data = data.sort((el1, el2) => el2.x.length - el1.x.length)
 
         var figure = {
             data

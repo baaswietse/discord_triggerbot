@@ -16,7 +16,7 @@ module.exports = {
         }]
         users.forEach(user => {
             data[0].values.push(user.triggers.length)
-            data[0].labels.push(user.username)
+            data[0].labels.push(user.triggers.length + ': ' + user.username)
         })
 
         var figure = {

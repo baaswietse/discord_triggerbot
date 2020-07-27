@@ -2,17 +2,7 @@ require('dotenv').config()
 const fs = require('fs')
 const Discord = require('discord.js')
 const mongoose = require('mongoose')
-let logger = require('ololog')
-logger = logger.configure({
-	time: {
-		yes: true,
-		format: 'iso'
-	},
-	tag: true,
-	stringify: {
-		rightAlignKeys: false,
-	}
-})
+let logger = require('./utils/logger')
 
 mongoose.connect(process.env.DB_URI, {
 	useNewUrlParser: true,

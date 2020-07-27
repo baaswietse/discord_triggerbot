@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const redditPost = require('../utils/redditRandomPostMedia')
 const nfetch = require('node-fetch')
 const gifResize = require('@gumlet/gif-resize')
-
+const logger = require('../utils/logger')
 const {
     promisify
 } = require('util')
@@ -35,6 +35,7 @@ module.exports = {
             } catch (error) {
                 // gif downloaden en herschalen wanneer bestand te groot
                 if (error.message = 'Request entity too large') {
+                    logger.info.bright.blue('Resizing gif')
                     message.channel.send('... resizing gif')
                     resizeGif(message, mediaUrl, `r/${args[0]}`)
                 } else {

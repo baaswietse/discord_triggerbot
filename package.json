@@ -18,7 +18,9 @@
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "mongoose": "^5.9.25",
+    "node-color-log": "^4.0.0",
     "node-fetch": "^2.6.0",
+    "ololog": "^1.1.159",
     "plotly": "^1.0.6",
     "request-image-size": "^2.1.0"
   },

@@ -2,6 +2,17 @@ require('dotenv').config()
 const fs = require('fs')
 const Discord = require('discord.js')
 const mongoose = require('mongoose')
+let logger = require('ololog')
+logger = logger.configure({
+	time: {
+		yes: true,
+		format: 'iso'
+	},
+	tag: true,
+	stringify: {
+		rightAlignKeys: false,
+	}
+})
 
 mongoose.connect(process.env.DB_URI, {
 	useNewUrlParser: true,
@@ -9,7 +20,7 @@ mongoose.connect(process.env.DB_URI, {
 })
 const connection = mongoose.connection
 connection.once('open', function () {
-	console.log('MongoDB database connection established successfully')
+	logger('MongoDB database connection established successfully')
 })
 
 const client = new Discord.Client()
@@ -34,7 +45,7 @@ const {
 } = require('./config.json')
 
 client.once('ready', () => {
-	console.log('Ready!')
+	logger('Ready!')
 })
 
 client.on('message', message => {
@@ -50,7 +61,7 @@ client.on('message', message => {
 
 	if (!command || command.anywhere) return
 
-	console.log(command)
+	logger.info.bright.blue('Got command:', command)
 
 	if (command.guildOnly && message.channel.type !== 'text') {
 		return message.reply('I can\'t execute that command inside DMs!')
@@ -89,7 +100,7 @@ client.on('message', message => {
 	try {
 		command.execute(message, args)
 	} catch (error) {
-		console.error(error)
+		logger.error(error)
 		message.reply('there was an error trying to execute that command!')
 	}
 })
@@ -113,7 +124,7 @@ const anywhere = (message) => {
 			})
 
 		if (command && command.anywhere) {
-			console.log(command)
+			logger.info.blue('Got command:', command)
 			command.execute(message, args)
 			break
 		}

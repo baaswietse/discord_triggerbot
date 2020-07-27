@@ -1,8 +1,16 @@
-const util = require('util')
 const nfetch = require('node-fetch')
-const requestImageSize = require('request-image-size')
 const fs = require('fs')
-//const requestImageSizeAsync = util.promisify(requestImageSize)
+let logger = require('ololog')
+logger = logger.configure({
+	time: {
+		yes: true,
+		format: 'iso'
+	},
+	tag: true,
+	stringify: {
+		rightAlignKeys: false,
+	}
+})
 
 async function redditPostToEmbed(args) {
     return new Promise(async (resolve, reject) => {
@@ -13,7 +21,7 @@ async function redditPostToEmbed(args) {
             let images = []
             const posts = body.data.children
             //fs.writeFileSync('test.json', JSON.stringify(posts))
-            console.log(posts.length)
+            logger.info.bright.blue('Returned posts: ', posts.length)
             for (const post of posts) {
                 const text = post.data
                 const extension = ['.jpg', '.png', '.svg', '.gif']
@@ -24,13 +32,11 @@ async function redditPostToEmbed(args) {
                     }
                 } else if (extension.includes(text.url.slice(-4))) {
                     images.push(text.url)
-                    console.log('text', text.url)
                 }
             }
-            console.log(images)
+            // console.log(images)
+            logger.info.bright.blue('Valid media: ', images.length)
             var image = images[Math.floor(Math.random() * images.length)]
-            //const imageSize = await requestImageSize(image)
-            ///console.log(imageSize)
             resolve(image)
         })
     })

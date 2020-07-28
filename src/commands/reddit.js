@@ -39,14 +39,8 @@ module.exports = {
                     })
                 }
             } catch (error) {
-                // gif downloaden en herschalen wanneer bestand te groot
-                if (error.message = 'Request entity too large') {
-                    logger.info.bright.blue('Resizing gif')
-                    message.channel.send('... resizing gif')
-                    resizeGif(message, mediaUrl, `r/${args[0]}`)
-                } else {
-                    message.channel.send(error.message)
-                }
+                logger.info.bright.blue(error.message)
+                message.channel.send(error.message)
             }
         }
     }

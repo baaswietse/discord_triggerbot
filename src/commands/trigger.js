@@ -18,7 +18,6 @@ module.exports = {
                     user_id: userData.user_id
                 })
 
-                console.log(user)
                 if (user == null) {
                     user = await Users.create(userData)
                     user.triggers.push({
@@ -34,7 +33,6 @@ module.exports = {
                     await user.save()
                 }
 
-                console.log(user)
                 const userTriggers = user.triggers.length
                 message.channel.send(`<@${user.user_id}> has been triggered ${userTriggers} times`)
 

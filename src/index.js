@@ -102,6 +102,7 @@ const anywhere = (message) => {
 
 	const args = message.content.trim().split(/ +/)
 	for (let arg of args) {
+		arg = arg.toLowerCase()
 		const command = client.commands.get(arg) ||
 			client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(arg)) ||
 			client.commands.find(cmd => { //aliases omzetten in regex en deze proberen toepassen

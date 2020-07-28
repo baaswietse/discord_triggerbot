@@ -23,15 +23,21 @@ module.exports = {
         if (args.length) {
             let mediaUrl = ''
             if (args[0] == 'surprise') {
-                const subreddits = ['nsfw', 'amateur', 'amateurcumsluts', 'amateurporn', 'anal', 'besthqporngifs', 'boobbounce', 'collegesluts', 'drunkgirls', 'girlsdoingstuffnaked', 'gonewild', 'godpussy', 'homemadensfw', 'hotfallingdevilz', 'lanarhoades', 'lipsthatgrip', 'nsfw_gifs', 'pussy', 'unexpectedtitty', 'womenbendingover']
+                const subreddits = ['nsfw', 'amateur', 'amateurcumsluts', 'amateurporn', 'porngifs', 'masturbationgonewild', 'nude_selfie', 'happyembarrassedgirls', 'anal', 'gwcouples', 'couplesgonewild', 'gettingherselfoff', 'blowjobs', 'squirting', 'boobbounce', 'realgirls', 'bustypetite', 'besthqporngifs', 'spreadem', 'rileyreid', 'boobbounce', 'collegesluts', 'drunkgirls', 'girlsdoingstuffnaked', 'gonewild', 'godpussy', 'homemadensfw', 'hotfallingdevilz', 'lanarhoades', 'lipsthatgrip', 'nsfw_gifs', 'pussy', 'unexpectedtitty', 'womenbendingover']
                 args[0] = subreddits[Math.floor(Math.random() * subreddits.length)]
             }
             try {
                 mediaUrl = await redditPost(args)
-                await message.channel.send(`r/${args[0]}`, {
-                    files: [mediaUrl],
-                    dynamic: true
-                })
+                console.log(mediaUrl)
+                if (mediaUrl.includes('.gif')) {
+                    // resizeGif(message, mediaUrl, `r/${args[0]}`)
+                    await message.channel.send(`r/${args[0]} - ${mediaUrl}`)
+                } else {
+                    await message.channel.send(`r/${args[0]}`, {
+                        files: [mediaUrl],
+                        dynamic: true
+                    })
+                }
             } catch (error) {
                 // gif downloaden en herschalen wanneer bestand te groot
                 if (error.message = 'Request entity too large') {
@@ -51,23 +57,35 @@ async function resizeGif(message, mediaUrl, sub) {
     try {
         nfetch(mediaUrl)
             .then(x => x.arrayBuffer())
-            .then(x => writeFilePromise(filename, Buffer.from(x)))
-            .then(() => {
-                const buf = readFileSync(filename)
+            .then(x => {
                 gifResize({
-                        width: 400
-                    })(buf).then(data => {
-                        writeFilePromise('output_' + filename, Buffer.from(data))
-                    })
-                    .then(async () => {
+                        width: 300
+                    })(Buffer.from(x))
+                    .then(async data => {
                         await message.channel.send(sub, {
-                            files: ['./output_' + filename]
+                            files: [Buffer.from(data, 'utf8')]
                         })
-                    }).then(() => {
-                        unlinkSync(filename)
-                        unlinkSync('./output_' + filename)
                     })
             })
+
+
+        /*.then(x => writeFilePromise(filename, Buffer.from(x)))
+        .then(() => {
+            const buf = readFileSync(filename)
+            gifResize({
+                    width: 400
+                })(buf).then(data => {
+                    writeFilePromise('output_' + filename, Buffer.from(data))
+                })
+                .then(async () => {
+                    await message.channel.send(sub, {
+                        files: ['./output_' + filename]
+                    })
+                }).then(() => {
+                    unlinkSync(filename)
+                    unlinkSync('./output_' + filename)
+                })
+        })*/
     } catch (e) {
         message.channel.send('e.message')
     }

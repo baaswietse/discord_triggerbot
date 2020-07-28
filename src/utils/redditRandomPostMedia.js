@@ -16,9 +16,15 @@ async function redditPostToEmbed(args) {
                 const text = post.data
                 const extension = ['.jpg', '.png', '.svg', '.gif']
 
-                if (text.media && text.media.oembed.thumbnail_url) {
-                    if (extension.includes(text.media.oembed.thumbnail_url.slice(-4))) {
-                        images.push(text.media.oembed.thumbnail_url)
+                if (text.media ) {
+                    if(text.media.oembed){
+                        if(text.media.oembed.thumbnail_url){
+
+                            if (extension.includes(text.media.oembed.thumbnail_url.slice(-4))) {
+                                images.push(text.media.oembed.thumbnail_url)
+                            }
+
+                        }
                     }
                 } else if (extension.includes(text.url.slice(-4))) {
                     images.push(text.url)

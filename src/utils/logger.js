@@ -2,7 +2,8 @@ let logger = require('ololog')
 logger = logger.configure({
 	time: {
 		yes: true,
-		format: 'iso'
+		locale: 'be',
+		options: { timeZone: 'Europe/Brussels' }
 	},
 	tag: true,
 	stringify: {

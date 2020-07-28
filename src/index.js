@@ -50,8 +50,9 @@ client.on('message', message => {
 		client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
 
 	if (!command || command.anywhere) return
-
-	logger.info.bright.blue('Got command:', command)
+	
+	logger.info.bright.blue('Got message:', message.content)
+	logger.info.bright.blue('Command:', command)
 
 	if (command.guildOnly && message.channel.type !== 'text') {
 		return message.reply('I can\'t execute that command inside DMs!')

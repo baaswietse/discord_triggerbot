@@ -2,6 +2,9 @@ const nfetch = require('node-fetch')
 const fs = require('fs')
 let logger = require('./logger')
 
+let lastIndex = 0
+let prevposts = []
+
 async function redditPostToEmbed(args) {
     return new Promise(async (resolve, reject) => {
         nfetch(`https://www.reddit.com/r/${args[0]}.json?limit=100`).then(res => res.json()).then(async body => {
@@ -16,14 +19,12 @@ async function redditPostToEmbed(args) {
                 const text = post.data
                 const extension = ['.jpg', '.png', '.svg', '.gif']
 
-                if (text.media ) {
-                    if(text.media.oembed){
-                        if(text.media.oembed.thumbnail_url){
-
+                if (text.media) {
+                    if (text.media.oembed) {
+                        if (text.media.oembed.thumbnail_url) {
                             if (extension.includes(text.media.oembed.thumbnail_url.slice(-4))) {
                                 images.push(text.media.oembed.thumbnail_url)
                             }
-
                         }
                     }
                 } else if (extension.includes(text.url.slice(-4))) {
@@ -32,7 +33,22 @@ async function redditPostToEmbed(args) {
             }
             // console.log(images)
             logger.info.bright.blue('Valid media: ', images.length)
-            var image = images[Math.floor(Math.random() * images.length)]
+
+            let index = Math.floor(Math.random() * images.length)
+            var image = images[index]
+
+            if (args[0].toLowerCase() == 'timonsimp') {
+                if (prevposts.length < images.length) {
+                    while (prevposts.includes(image)) {
+                        index = Math.floor(Math.random() * images.length)
+                        image = images[index]
+                    }
+                } else {
+                    prevposts = []
+                }
+                prevposts.push(image)
+            }
+
             resolve(image)
         })
     })

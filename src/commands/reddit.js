@@ -14,11 +14,11 @@ const {
 const writeFilePromise = promisify(writeFile)
 
 module.exports = {
-    name: 'reddit',
+    name: 'devreddit',
     description: 'Get a random image or gif from the specified subreddit, __reddit surprise__ for a random NSFW post',
     args: true,
     usage: '[subreddit name]',
-    cooldown: 0,
+    cooldown: 1,
     async execute(message, args) {
         if (args.length) {
             let mediaUrl = ''

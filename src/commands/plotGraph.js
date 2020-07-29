@@ -13,11 +13,12 @@ module.exports = {
             let plot = {
                 x: [],
                 y: [],
-                type: 'scatter',
+                mode: 'lines',
                 name: user.triggers.length + ': ' + user.username,
-                // mode: 'lines',
+                type: 'scatter',
                 line: {
-                    width: 2
+                    width: 2,
+                    shape: 'linear'
                 }
             }
             user.triggers.forEach((element, i) => {

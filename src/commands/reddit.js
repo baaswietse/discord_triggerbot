@@ -28,7 +28,7 @@ module.exports = {
             }
             try {
                 mediaUrl = await redditPost(args)
-                console.log(mediaUrl)
+                logger.info.bright.blue('Url: ', mediaUrl)
                 if (mediaUrl.includes('.gif')) {
                     // resizeGif(message, mediaUrl, `r/${args[0]}`)
                     await message.channel.send(`r/${args[0]} - ${mediaUrl}`)
@@ -41,12 +41,11 @@ module.exports = {
             } catch (error) {
                 // gif downloaden en herschalen wanneer bestand te groot
                 if (error.message = 'Request entity too large') {
-                    logger.info.bright.blue('Resizing gif')
+                    /*logger.info.bright.blue('Resizing gif')
                     message.channel.send('... resizing gif')
-                    resizeGif(message, mediaUrl, `r/${args[0]}`)
-                } else {
-                    message.channel.send(error.message)
+                    resizeGif(message, mediaUrl, `r/${args[0]}`)*/
                 }
+                message.channel.send(error.message)
             }
         }
     }

@@ -14,7 +14,7 @@ const {
 const writeFilePromise = promisify(writeFile)
 
 module.exports = {
-    name: 'devreddit',
+    name: 'reddit',
     description: 'Get a random image or gif from the specified subreddit, __reddit surprise__ for a random NSFW post',
     args: true,
     usage: '[subreddit name]',

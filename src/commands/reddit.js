@@ -1,7 +1,6 @@
 const Discord = require('discord.js')
 const redditPost = require('../utils/redditRandomPostMedia')
 const nfetch = require('node-fetch')
-const gifResize = require('@gumlet/gif-resize')
 const logger = require('../utils/logger')
 const {
     promisify
@@ -61,25 +60,6 @@ async function resizeGif(message, mediaUrl, sub) {
                         })
                     })
             })
-
-
-        /*.then(x => writeFilePromise(filename, Buffer.from(x)))
-        .then(() => {
-            const buf = readFileSync(filename)
-            gifResize({
-                    width: 400
-                })(buf).then(data => {
-                    writeFilePromise('output_' + filename, Buffer.from(data))
-                })
-                .then(async () => {
-                    await message.channel.send(sub, {
-                        files: ['./output_' + filename]
-                    })
-                }).then(() => {
-                    unlinkSync(filename)
-                    unlinkSync('./output_' + filename)
-                })
-        })*/
     } catch (e) {
         message.channel.send('e.message')
     }

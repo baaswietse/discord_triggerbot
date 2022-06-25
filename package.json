@@ -16,7 +16,7 @@
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "mongoose": "^5.9.25",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "ololog": "^1.1.160",
     "plotly": "^1.0.6"
   },
